@@ -33,8 +33,8 @@ This process can take hours or days and is prone to human error, overlooked cons
 ┌─────────────────────────────────────────────────────────────┐
 │                   LANGGRAPH AGENT LAYER                     │
 │         create_react_agent (ReAct Pattern)                  │
-│                                                              │
-│  System Prompt ──▶ Groq LLM (Llama 4 Scout 17B) ──▶ Tool Selection │
+│                                                             │
+│       System Prompt ──▶ Groq LLM ──▶ Tool Selection        
 └─────────────────────────────────────────────────────────────┘
                               │
                               │ Tool Invocations
@@ -167,7 +167,7 @@ User Message → Streamlit → LangChain HumanMessage → Chat History
 
 ```
 vacation_planner/
-├── app.py                      # Streamlit application
+├── app.py                     # Streamlit application
 ├── agent/
 │   ├── planner_agent.py       # Agent initialization
 │   ├── tools.py               # Tool factory & 8 custom tools
