@@ -2,7 +2,6 @@
 langchain-core==0.3.76
 langchain-groq==0.3.8
 langgraph==0.4.8
-langgraph-prebuilt==0.2.2
 
 # Streamlit
 streamlit==1.50.0

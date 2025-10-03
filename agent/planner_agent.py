@@ -8,7 +8,7 @@ from pathlib import Path
 from langchain_groq import ChatGroq
 from langgraph.prebuilt import create_react_agent
 from langchain_core.messages import SystemMessage
-from agent.tools import VACATION_PLANNER_TOOLS
+from agent.tools import create_vacation_tools
 
 
 def load_system_prompt(prompt_file: str = "system_prompt.txt") -> str:
@@ -18,13 +18,14 @@ def load_system_prompt(prompt_file: str = "system_prompt.txt") -> str:
         return f.read()
 
 
-def create_vacation_planner_agent(groq_api_key: str, model: str = "llama-3.3-70b-versatile"):
+def create_vacation_planner_agent(groq_api_key: str, model: str = "llama-3.3-70b-versatile", payment_authorized: bool = False):
     """
     Create and configure the vacation planner agent.
     
     Args:
         groq_api_key: Groq API key for authentication
         model: Groq model to use (default: llama-3.3-70b-versatile)
+        payment_authorized: Whether payment has been configured (default: False)
         
     Returns:
         Tuple of (agent, system_prompt) ready for execution
@@ -40,10 +41,13 @@ def create_vacation_planner_agent(groq_api_key: str, model: str = "llama-3.3-70b
     # Load system prompt
     system_prompt_text = load_system_prompt()
     
-    # Create the ReAct agent with tools (no binding to avoid tool registration issues)
+    # Create tools with payment authorization captured in closure
+    tools = create_vacation_tools(payment_authorized=payment_authorized)
+    
+    # Create the ReAct agent with payment-aware tools
     agent = create_react_agent(
         llm,
-        tools=VACATION_PLANNER_TOOLS
+        tools=tools
     )
     
     return agent, system_prompt_text

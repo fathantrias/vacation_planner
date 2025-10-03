@@ -341,136 +341,142 @@ def calculate_budget(planned_expenses: str) -> dict:
         return {"error": f"Failed to calculate budget: {str(e)}"}
 
 
-@tool
-def book_flight(flight_id: str) -> dict:
+def create_vacation_tools(payment_authorized: bool = False):
     """
-    Book a flight. Requires payment authorization.
-    Note: For PoC/single-user deployment, payment authorization is tracked via environment variable.
+    Factory function to create vacation planner tools with payment authorization captured in closure.
+    This ensures the agent cannot override payment status - it's set at tool creation time.
     
     Args:
-        flight_id: Flight ID from search results (e.g., 'FL001')
+        payment_authorized: Whether payment has been configured and authorized
         
     Returns:
-        Booking confirmation or error message
+        List of LangChain tools
     """
-    try:
-        # Check payment authorization via environment variable
-        # This approach works for single-user/session deployment (PoC)
-        # For multi-user production, use session-based storage or database
-        payment_authorized = os.environ.get('PAYMENT_AUTHORIZED') == 'true'
-        
-        if not payment_authorized:
-            return {
-                "booking_status": "failed",
-                "message": "⚠️ Payment information required. Please configure payment details in the sidebar first.",
-                "action_required": "setup_payment"
-            }
-        
-        # Find the flight
-        flights_data = load_json_data("flights_mock.json")
-        flight = next((f for f in flights_data["flights"] if f["flight_id"] == flight_id), None)
-        
-        if not flight:
-            return {
-                "booking_status": "failed",
-                "message": f"Flight {flight_id} not found"
-            }
-        
-        # Mock booking (in real system, this would call booking API)
-        booking_reference = f"BK-{flight_id}-{random.randint(1000, 9999)}"
-        
-        return {
-            "booking_status": "confirmed",
-            "booking_reference": booking_reference,
-            "flight_details": {
-                "flight_id": flight["flight_id"],
-                "airline": flight["airline"],
-                "route": f"{flight['origin_city']} → {flight['destination_city']}",
-                "duration": flight["duration"]
-            },
-            "total_charged": flight["price"],
-            "currency": flight["currency"],
-            "message": f"✅ Flight booked successfully! Confirmation: {booking_reference}"
-        }
-    except Exception as e:
-        return {"booking_status": "failed", "error": f"Booking failed: {str(e)}"}
-
-
-@tool
-def book_hotel(hotel_id: str, check_in: str, check_out: str) -> dict:
-    """
-    Book a hotel. Requires payment authorization.
-    Note: For PoC/single-user deployment, payment authorization is tracked via environment variable.
     
-    Args:
-        hotel_id: Hotel ID from search results (e.g., 'HTL001')
-        check_in: Check-in date (YYYY-MM-DD)
-        check_out: Check-out date (YYYY-MM-DD)
+    @tool
+    def book_flight(flight_id: str) -> dict:
+        """
+        Book a flight. Requires payment authorization.
+        Payment authorization is set when tools are created, not by the agent.
         
-    Returns:
-        Booking confirmation or error message
-    """
-    try:
-        # Check payment authorization via environment variable
-        # This approach works for single-user/session deployment (PoC)
-        # For multi-user production, use session-based storage or database
-        payment_authorized = os.environ.get('PAYMENT_AUTHORIZED') == 'true'
-        
-        if not payment_authorized:
+        Args:
+            flight_id: Flight ID from search results (e.g., 'FL001')
+            
+        Returns:
+            Booking confirmation or error message
+        """
+        try:
+            # payment_authorized is captured from closure - agent cannot override this
+            if not payment_authorized:
+                return {
+                    "booking_status": "failed",
+                    "message": "⚠️ Payment information required. Please configure payment details in the sidebar first.",
+                    "action_required": "setup_payment"
+                }
+            
+            # Find the flight
+            flights_data = load_json_data("flights_mock.json")
+            flight = next((f for f in flights_data["flights"] if f["flight_id"] == flight_id), None)
+            
+            if not flight:
+                return {
+                    "booking_status": "failed",
+                    "message": f"Flight {flight_id} not found"
+                }
+            
+            # Mock booking (in real system, this would call booking API)
+            booking_reference = f"BK-{flight_id}-{random.randint(1000, 9999)}"
+            
             return {
-                "booking_status": "failed",
-                "message": "⚠️ Payment information required. Please configure payment details in the sidebar first.",
-                "action_required": "setup_payment"
+                "booking_status": "confirmed",
+                "booking_reference": booking_reference,
+                "flight_details": {
+                    "flight_id": flight["flight_id"],
+                    "airline": flight["airline"],
+                    "route": f"{flight['origin_city']} → {flight['destination_city']}",
+                    "duration": flight["duration"]
+                },
+                "total_charged": flight["price"],
+                "currency": flight["currency"],
+                "message": f"✅ Flight booked successfully! Confirmation: {booking_reference}"
             }
+        except Exception as e:
+            return {"booking_status": "failed", "error": f"Booking failed: {str(e)}"}
+
+    @tool
+    def book_hotel(hotel_id: str, check_in: str, check_out: str) -> dict:
+        """
+        Book a hotel. Requires payment authorization.
+        Payment authorization is set when tools are created, not by the agent.
         
-        # Find the hotel
-        hotels_data = load_json_data("hotels_mock.json")
-        hotel = next((h for h in hotels_data["hotels"] if h["hotel_id"] == hotel_id), None)
-        
-        if not hotel:
+        Args:
+            hotel_id: Hotel ID from search results (e.g., 'HTL001')
+            check_in: Check-in date (YYYY-MM-DD)
+            check_out: Check-out date (YYYY-MM-DD)
+            
+        Returns:
+            Booking confirmation or error message
+        """
+        try:
+            # payment_authorized is captured from closure - agent cannot override this
+            if not payment_authorized:
+                return {
+                    "booking_status": "failed",
+                    "message": "⚠️ Payment information required. Please configure payment details in the sidebar first.",
+                    "action_required": "setup_payment"
+                }
+            
+            # Find the hotel
+            hotels_data = load_json_data("hotels_mock.json")
+            hotel = next((h for h in hotels_data["hotels"] if h["hotel_id"] == hotel_id), None)
+            
+            if not hotel:
+                return {
+                    "booking_status": "failed",
+                    "message": f"Hotel {hotel_id} not found"
+                }
+            
+            # Calculate nights and total
+            check_in_date = datetime.strptime(check_in, "%Y-%m-%d")
+            check_out_date = datetime.strptime(check_out, "%Y-%m-%d")
+            nights = (check_out_date - check_in_date).days
+            total_price = hotel["price_per_night"] * nights
+            
+            # Mock booking
+            booking_reference = f"BK-{hotel_id}-{random.randint(1000, 9999)}"
+            
             return {
-                "booking_status": "failed",
-                "message": f"Hotel {hotel_id} not found"
+                "booking_status": "confirmed",
+                "booking_reference": booking_reference,
+                "hotel_details": {
+                    "hotel_id": hotel["hotel_id"],
+                    "name": hotel["name"],
+                    "location": hotel["location"],
+                    "room_type": hotel["room_type"],
+                    "rating": hotel["rating"]
+                },
+                "check_in": check_in,
+                "check_out": check_out,
+                "nights": nights,
+                "total_charged": total_price,
+                "currency": hotel["currency"],
+                "message": f"✅ Hotel booked successfully! Confirmation: {booking_reference}"
             }
-        
-        # Calculate nights and total
-        check_in_date = datetime.strptime(check_in, "%Y-%m-%d")
-        check_out_date = datetime.strptime(check_out, "%Y-%m-%d")
-        nights = (check_out_date - check_in_date).days
-        total_price = hotel["price_per_night"] * nights
-        
-        # Mock booking
-        booking_reference = f"BK-{hotel_id}-{random.randint(1000, 9999)}"
-        
-        return {
-            "booking_status": "confirmed",
-            "booking_reference": booking_reference,
-            "hotel_details": {
-                "hotel_id": hotel["hotel_id"],
-                "name": hotel["name"],
-                "location": hotel["location"],
-                "room_type": hotel["room_type"],
-                "rating": hotel["rating"]
-            },
-            "check_in": check_in,
-            "check_out": check_out,
-            "nights": nights,
-            "total_charged": total_price,
-            "currency": hotel["currency"],
-            "message": f"✅ Hotel booked successfully! Confirmation: {booking_reference}"
-        }
-    except Exception as e:
-        return {"booking_status": "failed", "error": f"Booking failed: {str(e)}"}
+        except Exception as e:
+            return {"booking_status": "failed", "error": f"Booking failed: {str(e)}"}
+    
+    # Return all tools with booking tools that have payment_authorized captured
+    return [
+        get_user_calendar,
+        get_user_preferences,
+        search_flights,
+        search_hotels,
+        search_activities,
+        calculate_budget,
+        book_flight,
+        book_hotel
+    ]
 
 
-# Export all tools
-VACATION_PLANNER_TOOLS = [
-    get_user_calendar,
-    get_user_preferences,
-    search_flights,
-    search_hotels,
-    search_activities,
-    calculate_budget,
-    book_flight,
-    book_hotel
-]
+# For backward compatibility (default to unauthorized)
+VACATION_PLANNER_TOOLS = create_vacation_tools(payment_authorized=False)

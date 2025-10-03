@@ -40,7 +40,7 @@ if "bookings" not in st.session_state:
 
 
 def initialize_agent():
-    """Initialize the LangGraph agent."""
+    """Initialize the LangGraph agent with payment authorization status."""
     groq_api_key = os.getenv("GROQ_API_KEY")
     model = os.getenv("GROQ_MODEL", "llama-3.3-70b-versatile")
     
@@ -48,7 +48,15 @@ def initialize_agent():
         st.error("⚠️ GROQ_API_KEY not found. Please set it in .env file or Streamlit secrets.")
         st.stop()
     
-    agent, system_prompt = create_vacation_planner_agent(groq_api_key, model)
+    # Get payment authorization status from session state
+    payment_authorized = st.session_state.payment_configured
+    
+    # Create agent with payment-aware tools
+    agent, system_prompt = create_vacation_planner_agent(
+        groq_api_key, 
+        model, 
+        payment_authorized=payment_authorized
+    )
     st.session_state.system_prompt = system_prompt
     return agent
 
@@ -91,8 +99,8 @@ def render_payment_sidebar():
                             "cardholder": cardholder,
                             "authorized": True
                         }
-                        # Set environment variable for cross-thread access (PoC/single-user deployment)
-                        os.environ['PAYMENT_AUTHORIZED'] = 'true'
+                        # Force agent reinitialization with payment authorization
+                        st.session_state.agent = None
                         st.success("✅ Payment configured successfully!")
                         st.rerun()
                     else:
@@ -105,8 +113,8 @@ def render_payment_sidebar():
             if st.button("🔄 Update Payment Info", use_container_width=True):
                 st.session_state.payment_configured = False
                 st.session_state.payment_info = {}
-                # Clear environment variable
-                os.environ.pop('PAYMENT_AUTHORIZED', None)
+                # Force agent reinitialization without payment authorization
+                st.session_state.agent = None
                 st.rerun()
         
         st.divider()
