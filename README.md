@@ -11,16 +11,18 @@ An AI-powered chatbot that autonomously plans vacations using LangGraph's ReAct 
 - 📅 **Calendar-Aware**: Respects your availability and blocked dates
 - 💰 **Budget-Conscious**: Validates expenses against your budget constraints (in IDR)
 - 🎯 **Personalized**: Recommendations based on your interests and preferences
-- 💳 **Secure Bookings**: Payment authorization required before any bookings
+- 💳 **Secure Bookings**: Payment authorization required before flight/hotel bookings
 - 💬 **Conversational**: Natural language interface powered by Groq LLM
 - 🇮🇩 **Indonesia Focus**: All flights depart from Jakarta (CGK), prices in Indonesian Rupiah
+- ℹ️ **Activities Discovery**: Browse activities for inspiration (external booking required)
 
 ## 🏗️ Architecture
 
 Built with:
-- **LangGraph** (0.2.60) - ReAct agent orchestration
+- **LangGraph** (0.4.8) - ReAct agent orchestration
+- **LangChain Core** (0.3.76) - LangChain framework foundation
 - **Groq API** - Fast LLM inference with Llama 3.3 70B
-- **Streamlit** (1.41.1) - Interactive web interface
+- **Streamlit** (1.50.0) - Interactive web interface
 - **Python** 3.10+
 
 ## 🚀 Quick Start
@@ -108,7 +110,7 @@ You: Plan me a vacation to Bali next month
 
 Agent:
 🔍 Checking your calendar...
-✓ Found availability: March 15-22, 24-30
+✓ Found availability: October 10-21, November 9-19
 
 📊 Retrieved your preferences:
 - Budget: Rp 80,000,000
@@ -118,16 +120,16 @@ Agent:
 Found: Singapore Airlines - Rp 2,500,000 (CGK → DPS)
 
 🏨 Searching hotels...
-Found: Bali Beach Resort - Rp 2,000,000/night
+Found: Bali Beach Resort - Rp 2,000,000/night (7 nights)
 
-🎯 Recommended Activities:
+🎯 Recommended Activities (for your planning):
 - Uluwatu Temple Tour - Rp 700,000
 - Cooking Class - Rp 850,000
 
-💰 Budget Check:
-Total: Rp 26,550,000 | Remaining: Rp 53,450,000 ✓
+💰 Budget Check (flights + hotels):
+Total: Rp 16,500,000 | Remaining: Rp 63,500,000 ✓
 
-Would you like me to book this itinerary?
+Would you like me to book the flight and hotel?
 ```
 
 ## 📁 Project Structure
@@ -161,10 +163,12 @@ The AI agent has access to 8 custom tools:
 2. **get_user_preferences** - Retrieve user profile
 3. **search_flights** - Find available flights
 4. **search_hotels** - Search hotels by destination
-5. **search_activities** - Discover activities
-6. **calculate_budget** - Validate expenses
-7. **book_flight** - Make flight bookings
-8. **book_hotel** - Make hotel reservations
+5. **search_activities** - Discover activities for inspiration
+6. **calculate_budget** - Validate flight and hotel expenses
+7. **book_flight** - Make flight bookings (requires payment authorization)
+8. **book_hotel** - Make hotel reservations (requires payment authorization)
+
+**Note**: Activities are for planning purposes only. The agent can only book flights and hotels.
 
 ## 🌐 Deploy to Streamlit Cloud
 
@@ -185,9 +189,9 @@ The PoC uses mock JSON data to simulate real APIs:
 
 - **Flights**: 8 routes from Jakarta (CGK) to various destinations
 - **Hotels**: 8 properties across 5 cities
-- **Activities**: 15 curated experiences
-- **Calendar**: Pre-configured availability for March-April 2024
-- **Preferences**: Sample user profile with budget and interests
+- **Activities**: 15 curated experiences (informational only)
+- **Calendar**: Pre-configured availability for October-November 2025
+- **Preferences**: Sample user profile with budget (Rp 80,000,000 IDR) and interests
 
 ## 🔒 Security Note
 
