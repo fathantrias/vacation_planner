@@ -1,0 +1,10 @@
+# Core AI/LLM
+langchain-core==0.3.29
+langchain-groq==0.2.1
+langgraph==0.2.60
+
+# Streamlit
+streamlit==1.41.1
+
+# Utilities
+python-dotenv==1.0.1
