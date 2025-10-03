@@ -21,7 +21,7 @@ An AI-powered chatbot that autonomously plans vacations using LangGraph's ReAct 
 Built with:
 - **LangGraph** (0.4.8) - ReAct agent orchestration
 - **LangChain Core** (0.3.76) - LangChain framework foundation
-- **Groq API** - Fast LLM inference with Llama 3.3 70B
+- **Groq API** - Fast LLM inference with Llama 4 Scout 17B
 - **Streamlit** (1.50.0) - Interactive web interface
 - **Python** 3.10+
 
@@ -64,7 +64,7 @@ cp .env.example .env
 Edit `.env` and add your Groq API key:
 ```
 GROQ_API_KEY=your_groq_api_key_here
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=meta-llama/llama-4-scout-17b-16e-instruct
 ```
 
 5. **Run the application**
