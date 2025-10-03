@@ -1,0 +1,174 @@
+{
+  "activities": [
+    {
+      "activity_id": "ACT001",
+      "name": "Uluwatu Temple Sunset Tour",
+      "destination_city": "Bali",
+      "category": "culture",
+      "duration": "4 hours",
+      "rating": 4.8,
+      "description": "Visit the iconic clifftop temple and watch the traditional Kecak fire dance at sunset",
+      "includes": ["Hotel pickup", "English guide", "Entrance ticket", "Kecak dance show"]
+    },
+    {
+      "activity_id": "ACT002",
+      "name": "Ubud Rice Terraces & Waterfall Trek",
+      "destination_city": "Bali",
+      "category": "hiking",
+      "duration": "6 hours",
+      "rating": 4.9,
+      "description": "Hike through stunning rice terraces and visit hidden waterfalls in Ubud",
+      "includes": ["Hotel pickup", "Lunch", "Guide", "Entrance fees"]
+    },
+    {
+      "activity_id": "ACT003",
+      "name": "Balinese Cooking Class",
+      "destination_city": "Bali",
+      "category": "food",
+      "duration": "5 hours",
+      "rating": 4.7,
+      "description": "Learn to cook authentic Balinese dishes with a local chef, including market visit",
+      "includes": ["Market tour", "All ingredients", "Recipe booklet", "Lunch"]
+    },
+    {
+      "activity_id": "ACT004",
+      "name": "Seminyak Beach Photography Tour",
+      "destination_city": "Bali",
+      "category": "beaches",
+      "duration": "3 hours",
+      "rating": 4.6,
+      "description": "Professional photography session at Bali's most picturesque beach locations",
+      "includes": ["Professional photographer", "20+ edited photos", "Hotel pickup"]
+    },
+    {
+      "activity_id": "ACT005",
+      "name": "Nusa Dua Beach & Water Sports",
+      "destination_city": "Bali",
+      "category": "beaches",
+      "duration": "5 hours",
+      "rating": 4.8,
+      "description": "Experience thrilling water sports at the pristine Nusa Dua beach - parasailing, jet ski, and snorkeling",
+      "includes": ["All equipment", "Professional instructor", "Hotel pickup", "Safety briefing", "Refreshments"]
+    },
+    {
+      "activity_id": "ACT006",
+      "name": "Sunset Beach Club Experience",
+      "destination_city": "Bali",
+      "category": "beaches",
+      "duration": "4 hours",
+      "rating": 4.7,
+      "description": "Relax at Bali's premier beach clubs with stunning sunset views, cocktails, and beachfront dining",
+      "includes": ["Reserved daybed", "Welcome drink", "Appetizer platter", "Beach towels", "Access to pool"]
+    },
+    {
+      "activity_id": "ACT007",
+      "name": "Tokyo Street Food Tour",
+      "destination_city": "Tokyo",
+      "category": "food",
+      "duration": "3 hours",
+      "rating": 4.9,
+      "description": "Explore Tokyo's best street food spots in Shibuya and Harajuku with a local guide",
+      "includes": ["Food tastings", "English guide", "Drinks"]
+    },
+    {
+      "activity_id": "ACT008",
+      "name": "Mount Fuji Day Trip",
+      "destination_city": "Tokyo",
+      "category": "hiking",
+      "duration": "10 hours",
+      "rating": 4.8,
+      "description": "Full-day excursion to Mount Fuji including Lake Kawaguchi and Oshino Hakkai",
+      "includes": ["Round-trip transport", "Lunch", "English guide", "Entrance fees"]
+    },
+    {
+      "activity_id": "ACT009",
+      "name": "Traditional Tea Ceremony",
+      "destination_city": "Tokyo",
+      "category": "culture",
+      "duration": "2 hours",
+      "rating": 4.7,
+      "description": "Experience authentic Japanese tea ceremony in a traditional tea house",
+      "includes": ["Tea master", "Matcha and sweets", "Kimono rental option"]
+    },
+    {
+      "activity_id": "ACT010",
+      "name": "Tokyo Photography Workshop",
+      "destination_city": "Tokyo",
+      "category": "photography",
+      "duration": "4 hours",
+      "rating": 4.8,
+      "description": "Capture Tokyo's neon lights and street scenes with a professional photographer",
+      "includes": ["Pro photographer", "Photo editing tips", "Digital copies"]
+    },
+    {
+      "activity_id": "ACT011",
+      "name": "Louvre Museum Guided Tour",
+      "destination_city": "Paris",
+      "category": "culture",
+      "duration": "3 hours",
+      "rating": 4.9,
+      "description": "Skip-the-line access and expert guide through the world's most famous museum",
+      "includes": ["Skip-the-line ticket", "Expert guide", "Headset"]
+    },
+    {
+      "activity_id": "ACT012",
+      "name": "Parisian Food & Market Tour",
+      "destination_city": "Paris",
+      "category": "food",
+      "duration": "4 hours",
+      "rating": 4.8,
+      "description": "Explore local markets and taste authentic French delicacies with a food expert",
+      "includes": ["Food tastings", "Market visits", "Wine tasting", "Local guide"]
+    },
+    {
+      "activity_id": "ACT013",
+      "name": "Sagrada Familia & Gaudi Tour",
+      "destination_city": "Barcelona",
+      "category": "culture",
+      "duration": "4 hours",
+      "rating": 4.9,
+      "description": "Explore Gaudi's masterpieces including Sagrada Familia and Park Guell",
+      "includes": ["Skip-the-line tickets", "Expert guide", "Transport between sites"]
+    },
+    {
+      "activity_id": "ACT014",
+      "name": "Barcelona Tapas & Wine Tour",
+      "destination_city": "Barcelona",
+      "category": "food",
+      "duration": "3 hours",
+      "rating": 4.8,
+      "description": "Visit authentic tapas bars in the Gothic Quarter with a local foodie guide",
+      "includes": ["Tapas at 4 venues", "Wine pairings", "Local guide"]
+    },
+    {
+      "activity_id": "ACT015",
+      "name": "Santorini Sunset Cruise",
+      "destination_city": "Santorini",
+      "category": "beaches",
+      "duration": "5 hours",
+      "rating": 4.9,
+      "description": "Sail around the caldera, swim in hot springs, and watch the famous Santorini sunset",
+      "includes": ["Catamaran cruise", "BBQ dinner", "Drinks", "Snorkeling gear"]
+    },
+    {
+      "activity_id": "ACT016",
+      "name": "Oia Village Photography Walk",
+      "destination_city": "Santorini",
+      "category": "photography",
+      "duration": "3 hours",
+      "rating": 4.8,
+      "description": "Capture the iconic blue domes and whitewashed buildings with a pro photographer",
+      "includes": ["Professional photographer", "30+ edited photos", "Photo spots guide"]
+    },
+    {
+      "activity_id": "ACT017",
+      "name": "Greek Wine Tasting Tour",
+      "destination_city": "Santorini",
+      "category": "food",
+      "duration": "4 hours",
+      "rating": 4.7,
+      "description": "Visit three traditional wineries and taste Santorini's unique volcanic wines",
+      "includes": ["3 winery visits", "Wine tastings", "Cheese platter", "Transport"]
+    }
+  ]
+}

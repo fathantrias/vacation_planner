@@ -1,0 +1,103 @@
+{
+  "user_id": "user_001",
+  "availability": {
+    "2025-10-01": "available",
+    "2025-10-02": "available",
+    "2025-10-03": "available",
+    "2025-10-04": "available",
+    "2025-10-05": "available",
+    "2025-10-06": "available",
+    "2025-10-07": "available",
+    "2025-10-08": "blocked",
+    "2025-10-09": "blocked",
+    "2025-10-10": "available",
+    "2025-10-11": "available",
+    "2025-10-12": "available",
+    "2025-10-13": "available",
+    "2025-10-14": "available",
+    "2025-10-15": "available",
+    "2025-10-16": "available",
+    "2025-10-17": "available",
+    "2025-10-18": "available",
+    "2025-10-19": "available",
+    "2025-10-20": "available",
+    "2025-10-21": "available",
+    "2025-10-22": "blocked",
+    "2025-10-23": "available",
+    "2025-10-24": "available",
+    "2025-10-25": "available",
+    "2025-10-26": "available",
+    "2025-10-27": "available",
+    "2025-10-28": "available",
+    "2025-10-29": "available",
+    "2025-10-30": "available",
+    "2025-10-31": "available",
+    "2025-11-01": "available",
+    "2025-11-02": "available",
+    "2025-11-03": "available",
+    "2025-11-04": "available",
+    "2025-11-05": "available",
+    "2025-11-06": "available",
+    "2025-11-07": "blocked",
+    "2025-11-08": "blocked",
+    "2025-11-09": "available",
+    "2025-11-10": "available",
+    "2025-11-11": "available",
+    "2025-11-12": "available",
+    "2025-11-13": "available",
+    "2025-11-14": "available",
+    "2025-11-15": "available",
+    "2025-11-16": "available",
+    "2025-11-17": "available",
+    "2025-11-18": "available",
+    "2025-11-19": "available",
+    "2025-11-20": "blocked",
+    "2025-11-21": "available",
+    "2025-11-22": "available",
+    "2025-11-23": "available",
+    "2025-11-24": "available",
+    "2025-11-25": "available",
+    "2025-11-26": "available",
+    "2025-11-27": "available",
+    "2025-11-28": "available",
+    "2025-11-29": "available",
+    "2025-11-30": "available"
+  },
+  "blocked_events": [
+    {
+      "date": "2025-10-08",
+      "event": "Team Meeting",
+      "time": "09:00-17:00"
+    },
+    {
+      "date": "2025-10-09",
+      "event": "Client Presentation",
+      "time": "10:00-15:00"
+    },
+    {
+      "date": "2025-10-22",
+      "event": "Project Review",
+      "time": "full-day"
+    },
+    {
+      "date": "2025-11-07",
+      "event": "Conference",
+      "time": "full-day"
+    },
+    {
+      "date": "2025-11-08",
+      "event": "Conference",
+      "time": "full-day"
+    },
+    {
+      "date": "2025-11-20",
+      "event": "Annual Planning",
+      "time": "09:00-18:00"
+    }
+  ],
+  "vacation_preferences": {
+    "min_duration_days": 5,
+    "max_duration_days": 10,
+    "preferred_start_days": ["Friday", "Saturday"]
+  }
+}

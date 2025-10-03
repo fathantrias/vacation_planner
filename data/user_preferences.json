@@ -1,0 +1,60 @@
+{
+  "user_id": "user_001",
+  "location": {
+    "home_city": "Jakarta",
+    "home_airport": "CGK"
+  },
+  "budget": {
+    "total": 80000000,
+    "currency": "IDR",
+    "breakdown": {
+      "flights": 25000000,
+      "hotels": 30000000,
+      "activities": 25000000
+    },
+    "flexibility": "moderate"
+  },
+  "destinations": {
+    "preferred": ["Bali, Indonesia"],
+    "avoided": [
+      "Desert regions",
+      "Extreme cold climates"
+    ],
+    "visited": [
+      "Singapore",
+      "Kuala Lumpur",
+      "Bangkok"
+    ]
+  },
+  "interests": [
+    "beaches",
+    "culture",
+    "food",
+    "photography",
+    "hiking",
+    "local markets"
+  ],
+  "accommodation": {
+    "type": "hotel",
+    "min_rating": 4.0,
+    "preferred_amenities": [
+      "wifi",
+      "breakfast",
+      "pool",
+      "gym"
+    ]
+  },
+  "travel": {
+    "class": "economy",
+    "max_stops": 1,
+    "preferred_airlines": [
+      "Singapore Airlines",
+      "Emirates",
+      "Qatar Airways"
+    ],
+    "seat_preference": "window"
+  },
+  "dietary_restrictions": [],
+  "travel_style": "balanced",
+  "group_size": 1
+}
